@@ -1,0 +1,39 @@
+﻿@page
+@model PAIlab8.Pages.NameModel
+@{
+    string name;
+    if (Request.Method == "POST")
+    {
+        name = Request.Form["name"];
+    }
+    else
+    {
+        name = Request.Query["name"];
+    }
+
+    if (string.IsNullOrWhiteSpace(name))
+    {
+        name = "Robert Paulson";
+    }
+
+    var list = new string[10];
+    for (var i = 0; i < 10; i++)
+    {
+        list[i] = "His name is " + name;
+    }
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <ul>
+        @foreach (var element in list)
+        {
+            <li>@element</li>
+        }
+    </ul>
+</body>
+</html>
